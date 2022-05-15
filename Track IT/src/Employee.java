@@ -9,7 +9,7 @@
  * @author MUHAMMAD FASEEH
  */
 public class Employee {
-    private String name,id,age,d_ID,d_name,designation,salary,email,p_num,password;
+    private String id,name,age,d_ID,d_name,designation,salary,email,p_num,password;
   
 public String getId(){
     return id;

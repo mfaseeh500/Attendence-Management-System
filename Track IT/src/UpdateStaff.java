@@ -1,9 +1,7 @@
 
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 
 import javax.swing.JOptionPane;
 
@@ -12,7 +10,6 @@ import javax.swing.JOptionPane;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author MUHAMMAD FASEEH
@@ -39,13 +36,13 @@ public class UpdateStaff extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         name = new javax.swing.JTextField();
         age = new javax.swing.JTextField();
-        designation = new javax.swing.JTextField();
-        salary = new javax.swing.JTextField();
+        Phonenumber = new javax.swing.JTextField();
+        departmentid = new javax.swing.JTextField();
         id = new javax.swing.JTextField();
-        designation1 = new javax.swing.JTextField();
-        age1 = new javax.swing.JTextField();
-        name1 = new javax.swing.JTextField();
-        id1 = new javax.swing.JTextField();
+        salary = new javax.swing.JTextField();
+        designation = new javax.swing.JTextField();
+        departmentname = new javax.swing.JTextField();
+        password = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -77,9 +74,9 @@ public class UpdateStaff extends javax.swing.JFrame {
             }
         });
 
-        name1.addActionListener(new java.awt.event.ActionListener() {
+        departmentname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                name1ActionPerformed(evt);
+                departmentnameActionPerformed(evt);
             }
         });
 
@@ -163,13 +160,13 @@ public class UpdateStaff extends javax.swing.JFrame {
                                 .addComponent(age, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(salary, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(departmentid, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(age1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(name1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(designation1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(designation, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(id1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(designation, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(departmentname, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(salary, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(207, 207, 207))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(78, 78, 78)
@@ -198,30 +195,30 @@ public class UpdateStaff extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(designation, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(salary, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(departmentid, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel7))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(38, 38, 38)
-                        .addComponent(name1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(departmentname, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(age1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(designation, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(designation1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(salary, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(id1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
                 .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -250,60 +247,69 @@ public class UpdateStaff extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         dispose();
-        AdminControls ac=new AdminControls();
+        AdminControls ac = new AdminControls();
         ac.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        try{
-            connect c=new connect();
-            String employee="update employee set NAME = ?, AGE = ?, DESIGNATION = ?, SALARY = ? where ID = ?";
-            PreparedStatement ps=c.c.prepareStatement(employee);
-            ps.setString(1,name.getText());
-            ps.setString(2,age.getText());
-            ps.setString(3,designation.getText());
-            ps.setString(4,salary.getText());
-            ps.setString(5, id.getText());
+        try {
+            connect c = new connect();
+            String employee = "update employee set NAME = ?, AGE = ?, DESIGNATION = ?, SALARY = ? where ID = ?";
+            PreparedStatement ps = c.c.prepareStatement(employee);
+            ps.setString(1, name.getText());
+            ps.setString(2, age.getText());
+            ps.setString(3, Phonenumber.getText());
+            ps.setString(4, departmentid.getText());
+            ps.setString(5, departmentname.getText());
+            ps.setString(6, designation.getText());
+            ps.setString(7, salary.getText());
+            ps.setString(8, password.getText());
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(null,"RECORD UPDATED SUCCESSFULLY");
+            JOptionPane.showMessageDialog(null, "RECORD UPDATED SUCCESSFULLY");
             name.setText("");
             id.setText("");
             age.setText("");
+            Phonenumber.setText("");
+            departmentid.setText("");
+            departmentname.getText();
             designation.setText("");
             salary.setText("");
-        }
-        catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,ex);
+            password.setText("");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        try{
-            connect c=new connect();
-            String employee="select * from employee where ID =?";
+        try {
+            connect c = new connect();
+            String employee = "select * from employee where ID =?";
             PreparedStatement p = c.c.prepareStatement(employee);
-            p.setString(1,id.getText());
-            ResultSet rs=p.executeQuery();
-            if(rs.next()){
+            p.setString(1, id.getText());
+            ResultSet rs = p.executeQuery();
+            if (rs.next()) {
                 name.setText(rs.getString("NAME"));
                 age.setText(rs.getString("AGE"));
+                Phonenumber.setText(rs.getString("PHONENUMBER"));
+                departmentid.setText(rs.getString("SALARY"));
+                departmentname.setText(rs.getString("DEPARTMENTNAME"));
                 designation.setText(rs.getString("DESIGNATION"));
                 salary.setText(rs.getString("SALARY"));
-            }else{
-                JOptionPane.showMessageDialog(null,"RECORD NOT FOUND");
+                password.setText(rs.getString("PASSWORD"));
+            } else {
+                JOptionPane.showMessageDialog(null, "RECORD NOT FOUND");
             }
-        }
-        catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,ex);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void name1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name1ActionPerformed
+    private void departmentnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentnameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_name1ActionPerformed
+    }//GEN-LAST:event_departmentnameActionPerformed
 
     private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
         // TODO add your handling code here:
@@ -341,18 +347,18 @@ public class UpdateStaff extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new UpdateStaff().setVisible(true);
-              
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Phonenumber;
     private javax.swing.JTextField age;
-    private javax.swing.JTextField age1;
+    private javax.swing.JTextField departmentid;
+    private javax.swing.JTextField departmentname;
     private javax.swing.JTextField designation;
-    private javax.swing.JTextField designation1;
     private javax.swing.JTextField id;
-    private javax.swing.JTextField id1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -368,7 +374,7 @@ public class UpdateStaff extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField name;
-    private javax.swing.JTextField name1;
+    private javax.swing.JTextField password;
     private javax.swing.JTextField salary;
     // End of variables declaration//GEN-END:variables
 }

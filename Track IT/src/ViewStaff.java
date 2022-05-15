@@ -1,5 +1,7 @@
 
-
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,31 +17,47 @@ public class ViewStaff extends javax.swing.JFrame {
     /**
      * Creates new form ViewStaff
      */
-   /* public void showData() {
+    public void showData() {
+        Doubly v = new Doubly();
 
         try {
             connect c = new connect();
-            String sql = "select * from Employee";
+            String sql = "select employee.ID,employee.NAME,employee.AGE,employee.DEPARTMENTID,employee.DEPARTMENTNAME,employee.DESIGNATION,employee.SALARY,employee.EMAIL,employee.PHONENUMBER,employeelogin.PASSWORD from Employee inner join employeelogin on employee.ID=employeelogin.ID";
             ResultSet rs = c.s.executeQuery(sql);
             while (rs.next()) {
                 Employee e = new Employee();
-                e.setName(rs.getString("NAME"));
                 e.setId(rs.getString("ID"));
+                e.setName(rs.getString("NAME"));
                 e.setAge(rs.getString("AGE"));
+                e.setDepartmentID(rs.getString("DEPARTMENTID"));
+                e.setDepartmentname(rs.getString("DEPARTMENTNAME"));
                 e.setDesignation(rs.getString("DESIGNATION"));
                 e.setSalary(rs.getString("SALARY"));
+                e.setEmail(rs.getString("EMAIL"));
+                e.setPhonenumber(rs.getString("PHONENUMBER"));
+                e.setPassword(rs.getString("PASSWORD"));
+
+                v.insertAtFirst(e);
 
             }
         } catch (SQLException ex) {
             System.out.println("THE ERROR IS" + ex);
 
         }
-
-    }*/
+        int i = 0;
+        while (i < v.Counter()) {
+            Employee e = new Employee();
+            e = (Employee) v.getAt(i);
+            String employee[] = {e.getId(), e.getName(), e.getAge(),e.getDepartmentID(),e.getDepartmentname(), e.getDesignation(), e.getSalary(),e.getEmail(),e.getPhonenumber(),e.getPassword()};
+            DefaultTableModel tb1Model = (DefaultTableModel) jTable1.getModel();
+            tb1Model.addRow(employee);
+            i++;
+        }
+    }
 
     public ViewStaff() {
         initComponents();
-       
+        showData();
     }
 
     /**
@@ -52,81 +70,55 @@ public class ViewStaff extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Track IT");
-        setLocation(new java.awt.Point(500, 200));
+        setLocation(new java.awt.Point(0, 100));
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        jTable2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "NAME", "AGE", "DEPARTMENT ID", "DEPARTMENT NAME", "DESIGNATION", "SALARY", "USERNAME", "PASSWORD"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(jTable2);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/logo.jpeg"))); // NOI18N
         jLabel1.setText("jLabel1");
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButton2.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        jButton2.setText("BACK");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "NAME", "AGE", "DEPARMENT ID", "DEPARTMENT NAME", "DESIGNATION", "SALARY", "EMAIL", "PHONE NUMBER", "PASSWORD", "DATE OF JOINING"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/pics/Text/View Staff.png"))); // NOI18N
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(491, 491, 491)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(566, 566, 566)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(522, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(674, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(526, 526, 526))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(57, 57, 57)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(21, 21, 21))
+                .addGap(100, 100, 100)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(135, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -137,18 +129,11 @@ public class ViewStaff extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        dispose();
-        AdminControls ac = new AdminControls();
-        ac.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,11 +171,9 @@ public class ViewStaff extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
