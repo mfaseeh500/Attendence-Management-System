@@ -77,22 +77,20 @@
                               <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="age" alignment="1" min="-2" pref="170" max="-2" attributes="0"/>
-                                  <Component id="name" alignment="1" min="-2" pref="170" max="-2" attributes="0"/>
-                                  <Component id="id" alignment="1" min="-2" pref="170" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="departmentid" min="-2" pref="170" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="designation" alignment="1" min="-2" pref="170" max="-2" attributes="0"/>
-                                  <Component id="departmentname" alignment="1" min="-2" pref="170" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="salary" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
-                              <Component id="Phonenumber" min="-2" pref="170" max="-2" attributes="0"/>
-                              <Component id="password" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="age" alignment="0" pref="170" max="32767" attributes="0"/>
+                              <Component id="name" alignment="0" pref="170" max="32767" attributes="0"/>
+                              <Component id="id" alignment="0" pref="170" max="32767" attributes="0"/>
+                              <Component id="departmentid" pref="170" max="32767" attributes="0"/>
+                              <Component id="designation" alignment="0" pref="170" max="32767" attributes="0"/>
+                              <Component id="departmentname" alignment="0" pref="170" max="32767" attributes="0"/>
+                              <Component id="salary" alignment="0" pref="170" max="32767" attributes="0"/>
+                              <Component id="Phonenumber" pref="170" max="32767" attributes="0"/>
+                              <Component id="password" pref="170" max="32767" attributes="0"/>
+                              <Component id="email" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="207" max="-2" attributes="0"/>
                       </Group>
@@ -160,10 +158,15 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="email" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="password" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -315,6 +318,16 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="PASSWORD"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="email">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel2">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="EMAIL"/>
           </Properties>
         </Component>
       </SubComponents>

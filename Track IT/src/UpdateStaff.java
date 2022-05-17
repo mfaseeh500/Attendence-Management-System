@@ -55,6 +55,8 @@ public class UpdateStaff extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        email = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Track IT");
@@ -131,6 +133,9 @@ public class UpdateStaff extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("PASSWORD");
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("EMAIL");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -153,20 +158,20 @@ public class UpdateStaff extends javax.swing.JFrame {
                             .addComponent(jLabel10)
                             .addComponent(jLabel11)
                             .addComponent(jLabel12)
-                            .addComponent(jLabel4))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(age, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(departmentid, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(designation, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(departmentname, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(salary, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(age, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                            .addComponent(name, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                            .addComponent(id, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                            .addComponent(departmentid, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                            .addComponent(designation, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                            .addComponent(departmentname, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                            .addComponent(salary, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                            .addComponent(Phonenumber, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                            .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                            .addComponent(email))
                         .addGap(207, 207, 207))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(78, 78, 78)
@@ -218,9 +223,13 @@ public class UpdateStaff extends javax.swing.JFrame {
                             .addComponent(jLabel11))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
-                .addGap(52, 52, 52)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jButton1)
@@ -253,10 +262,15 @@ public class UpdateStaff extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+
         try {
             connect c = new connect();
-            String employee = "update employee set NAME = ?, AGE = ?, DESIGNATION = ?, SALARY = ? where ID = ?";
-            PreparedStatement ps = c.c.prepareStatement(employee);
+            //String employee= "update employee inner join employeelogin on employee.id=employeelogin.id  set employee.name=?, employee.age=?, employee.phonenumber=?, employee.departmentid=?, employee.departmentname=?, employee.designation=?, employee.salary=?,employee.email, employeelogin.password=? where employee.id=?";
+
+            String sql1 = "update employee set NAME = ?, AGE = ?,PHONENUMBER=?,DEPARTMENTID=?, DEPARTMENTNAME=?, DESIGNATION = ?, SALARY = ?, EMAIL=? where ID = ?";
+            String sql2 = "update employeelogin set password=? where id=?";
+//prepared statement for sql1
+            PreparedStatement ps = c.c.prepareStatement(sql1);
             ps.setString(1, name.getText());
             ps.setString(2, age.getText());
             ps.setString(3, Phonenumber.getText());
@@ -264,32 +278,41 @@ public class UpdateStaff extends javax.swing.JFrame {
             ps.setString(5, departmentname.getText());
             ps.setString(6, designation.getText());
             ps.setString(7, salary.getText());
-            ps.setString(8, password.getText());
+            ps.setString(8, email.getText());
+            ps.setString(9, id.getText());
+//prepared statement for sql2
+            PreparedStatement Ps = c.c.prepareStatement(sql2);
+            Ps.setString(1, password.getText());
+            Ps.setString(2, id.getText());
+            //executing updates for both of the prepared statements
             ps.executeUpdate();
+            Ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "RECORD UPDATED SUCCESSFULLY");
             name.setText("");
             id.setText("");
             age.setText("");
             Phonenumber.setText("");
             departmentid.setText("");
-            departmentname.getText();
+            departmentname.setText("");
             designation.setText("");
             salary.setText("");
             password.setText("");
+            email.setText("");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        // SEARCH
         try {
             connect c = new connect();
-            String employee = "select * from employee where ID =?";
+            String employee = "select employee.NAME,employee.AGE,employee.DEPARTMENTID,employee.DEPARTMENTNAME,employee.DESIGNATION,employee.SALARY,employee.EMAIL,employee.PHONENUMBER,employeelogin.PASSWORD from Employee inner join employeelogin on employee.ID=employeelogin.ID where employee.ID=?";
             PreparedStatement p = c.c.prepareStatement(employee);
             p.setString(1, id.getText());
             ResultSet rs = p.executeQuery();
             if (rs.next()) {
+
                 name.setText(rs.getString("NAME"));
                 age.setText(rs.getString("AGE"));
                 Phonenumber.setText(rs.getString("PHONENUMBER"));
@@ -297,7 +320,10 @@ public class UpdateStaff extends javax.swing.JFrame {
                 departmentname.setText(rs.getString("DEPARTMENTNAME"));
                 designation.setText(rs.getString("DESIGNATION"));
                 salary.setText(rs.getString("SALARY"));
+                email.setText(rs.getString("EMAIL"));
                 password.setText(rs.getString("PASSWORD"));
+                //logic so that the id cant be changed by anyone
+                id.setEditable(false);
             } else {
                 JOptionPane.showMessageDialog(null, "RECORD NOT FOUND");
             }
@@ -358,6 +384,7 @@ public class UpdateStaff extends javax.swing.JFrame {
     private javax.swing.JTextField departmentid;
     private javax.swing.JTextField departmentname;
     private javax.swing.JTextField designation;
+    private javax.swing.JTextField email;
     private javax.swing.JTextField id;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
@@ -366,6 +393,7 @@ public class UpdateStaff extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

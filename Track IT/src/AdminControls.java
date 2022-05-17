@@ -64,6 +64,11 @@ public class AdminControls extends javax.swing.JFrame {
         });
 
         jButton4.setText("DELETE EMPLOYEE");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("CHECK ATTENDENCE");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -171,6 +176,13 @@ public class AdminControls extends javax.swing.JFrame {
         ViewStaff vs=new ViewStaff();
         vs.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // DELETE STAFF:
+        dispose();
+        DeleteStaff ds=new DeleteStaff();
+        ds.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
