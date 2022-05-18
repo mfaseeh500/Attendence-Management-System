@@ -22,7 +22,7 @@ public class ViewStaff extends javax.swing.JFrame {
 
         try {
             connect c = new connect();
-            String sql = "select employee.ID,employee.NAME,employee.AGE,employee.DEPARTMENTID,employee.DEPARTMENTNAME,employee.DESIGNATION,employee.SALARY,employee.EMAIL,employee.PHONENUMBER,employeelogin.PASSWORD from Employee inner join employeelogin on employee.ID=employeelogin.ID";
+            String sql = "select employee.ID,employee.NAME,employee.AGE,employee.DEPARTMENTID,employee.DEPARTMENTNAME,employee.DESIGNATION,employee.SALARY,employee.EMAIL,employee.PHONENUMBER,employee.DOB, employeelogin.PASSWORD from Employee inner join employeelogin on employee.ID=employeelogin.ID";
             ResultSet rs = c.s.executeQuery(sql);
             while (rs.next()) {
                 Employee e = new Employee();
@@ -36,6 +36,7 @@ public class ViewStaff extends javax.swing.JFrame {
                 e.setEmail(rs.getString("EMAIL"));
                 e.setPhonenumber(rs.getString("PHONENUMBER"));
                 e.setPassword(rs.getString("PASSWORD"));
+                e.setDOJ(rs.getString("DOB"));
 
                 v.insertAtFirst(e);
 
@@ -48,7 +49,7 @@ public class ViewStaff extends javax.swing.JFrame {
         while (i < v.Counter()) {
             Employee e = new Employee();
             e = (Employee) v.getAt(i);
-            String employee[] = {e.getId(), e.getName(), e.getAge(),e.getDepartmentID(),e.getDepartmentname(), e.getDesignation(), e.getSalary(),e.getEmail(),e.getPhonenumber(),e.getPassword()};
+            String employee[] = {e.getId(), e.getName(), e.getAge(),e.getDepartmentID(),e.getDepartmentname(), e.getDesignation(), e.getSalary(),e.getEmail(),e.getPhonenumber(),e.getPassword(),e.getDOJ()};
             DefaultTableModel tb1Model = (DefaultTableModel) jTable1.getModel();
             tb1Model.addRow(employee);
             i++;
@@ -73,6 +74,7 @@ public class ViewStaff extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Track IT");
@@ -102,6 +104,13 @@ public class ViewStaff extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jButton1.setText("BACK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -111,6 +120,10 @@ public class ViewStaff extends javax.swing.JFrame {
                 .addContainerGap(674, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(526, 526, 526))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(619, 619, 619)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +131,9 @@ public class ViewStaff extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(100, 100, 100)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(23, 23, 23))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -134,6 +149,13 @@ public class ViewStaff extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // BACK LOGIC
+        dispose();
+        AdminControls ac = new AdminControls();
+        ac.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,6 +193,7 @@ public class ViewStaff extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -9,7 +9,7 @@
  * @author MUHAMMAD FASEEH
  */
 public class Employee {
-    private String id,name,age,d_ID,d_name,designation,salary,email,p_num,password;
+    private String id,name,age,d_ID,d_name,designation,salary,email,p_num,password, doj, dol;
   
 public String getId(){
     return id;
@@ -42,6 +42,12 @@ public String getPhonenumber(){
 public String getPassword(){
     return password;
 }
+public String getDOJ(){
+    return doj;
+}
+public String getDOL(){
+    return dol;
+}
 public void setName(String name){
     
     this.name=name;
@@ -73,5 +79,10 @@ public void setPhonenumber(String p_num){
 public void setPassword(String password){
     this.password=password;
 }
-
+public void setDOJ(String doj){
+    this.doj=doj;
+}
+public void setDOL(String dol){
+    this.dol=dol;
+}
 }
