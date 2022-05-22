@@ -4,20 +4,21 @@
  * and open the template in the editor.
  */
 
-
-import java.awt.Color;
-import java.sql.PreparedStatement;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author ALI 
+ * @author ALI
  */
 public class SelectStaff extends javax.swing.JFrame {
-String status;
 
+    String status;
+Date d;
     /**
      * Creates new form SelectStaff
      */
@@ -58,12 +59,11 @@ String status;
         present = new javax.swing.JRadioButton();
         absent = new javax.swing.JRadioButton();
         leave = new javax.swing.JRadioButton();
-        morning = new javax.swing.JRadioButton();
-        evening = new javax.swing.JRadioButton();
         shift = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(400, 30));
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -76,18 +76,8 @@ String status;
         name.setEnabled(false);
 
         email.setEnabled(false);
-        email.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailActionPerformed(evt);
-            }
-        });
 
         departmentid.setEnabled(false);
-        departmentid.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                departmentidActionPerformed(evt);
-            }
-        });
 
         designation.setEnabled(false);
 
@@ -168,21 +158,9 @@ String status;
             }
         });
 
-        morning.setBackground(new java.awt.Color(0, 102, 102));
-        buttonGroup1.add(morning);
-        morning.setText("Morning Shift");
-        morning.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                morningActionPerformed(evt);
-            }
-        });
-
-        evening.setBackground(new java.awt.Color(0, 102, 102));
-        buttonGroup1.add(evening);
-        evening.setText("Evening Shift");
-        evening.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eveningActionPerformed(evt);
+        shift.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                shiftKeyReleased(evt);
             }
         });
 
@@ -192,38 +170,17 @@ String status;
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(156, 156, 156)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel6))
-                        .addGap(52, 52, 52)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(shift)
-                            .addComponent(designation, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                            .addComponent(email)
-                            .addComponent(name)
-                            .addComponent(departmentid)
-                            .addComponent(departmentname, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(50, 50, 50)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(57, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(131, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(146, 146, 146))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -236,23 +193,39 @@ String status;
                                         .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(absent)
-                                .addComponent(present)
-                                .addComponent(leave)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(305, 305, 305)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(absent)
+                                    .addComponent(present)
+                                    .addComponent(leave))))
                         .addGap(86, 86, 86))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(evening, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(morning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(32, 32, 32))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel6))
+                        .addGap(65, 65, 65)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(shift, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(departmentid, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(departmentname, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(designation, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
                 .addComponent(jLabel1)
-                .addGap(67, 67, 67)
+                .addGap(91, 91, 91)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -265,57 +238,47 @@ String status;
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(jButton5)))
-                .addGap(40, 40, 40)
-                .addComponent(present)
-                .addGap(18, 18, 18)
-                .addComponent(morning)
-                .addGap(4, 4, 4)
+                .addGap(107, 107, 107)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(evening)
-                    .addComponent(jLabel3)
-                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(departmentid, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(departmentid, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(present)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(departmentname, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
+                    .addComponent(jLabel9)
+                    .addComponent(absent))
+                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(leave)
+                    .addComponent(designation, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(designation, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(absent)
-                        .addGap(18, 18, 18)
-                        .addComponent(leave)))
-                .addGap(8, 8, 8)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jButton3)
-                        .addGap(53, 95, Short.MAX_VALUE))
+                        .addGap(13, 13, 13)
+                        .addComponent(jButton3))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
+                            .addComponent(jLabel4)
+                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(shift, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6)
-                            .addComponent(jButton2))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jButton2))))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,37 +290,32 @@ String status;
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-          
-         Employee e = new Employee();
-e.setId(id.getText());
+
+        Employee e = new Employee();
+        e.setId(id.getText());
         e.setName(name.getText());
-    
+
         e.setDepartmentID(departmentid.getText());
         e.setDesignation(designation.getText());
-       
+
         e.setEmail(email.getText());
-  
-  
-      
 
         try {
             connect c = new connect();
-            String sql1 = "insert into Attendance(ID,NAME,DEPARTMENTID,DESIGNATION,EMAIL,Status,Shiftid,Date) values('" + e.getId() + "','" + e.getName() + "','" + e.getDepartmentID()+ "','" + e.getDesignation() + "','" + e.getEmail() + "','" + status + "','" + shift.getText()+"','" + java.time.LocalDate.now() + "')";
-   
+            String sql1 = "insert into Attendance(ID,NAME,DEPARTMENTID,DESIGNATION,EMAIL,Status,Shiftid,Date) values('" + e.getId() + "','" + e.getName() + "','" + e.getDepartmentID() + "','" + e.getDesignation() + "','" + e.getEmail() + "','" + status + "','" + shift.getText() + "','" + java.time.LocalDate.now() + "')";
+
             c.s.addBatch(sql1);
-       
 
             c.s.executeBatch();
             JOptionPane.showMessageDialog(null, "ATTENDANCE SUCCESSFULLY ADDED");
-            name.setText("");
-           
-            departmentid.setText("");
-
-            designation.setText("");
-     
-            email.setText("");
-      
+            id.setText("");
             password.setText("");
+            name.setText("");
+            departmentid.setText("");
+            departmentname.setText("");
+            designation.setText("");
+            email.setText("");
+            shift.setText("");
         } catch (Exception ee) {
             JOptionPane.showMessageDialog(null, ee);
 
@@ -366,28 +324,29 @@ e.setId(id.getText());
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // LOGIN
         try {
             connect c = new connect();
-            String Id=id.getText();
-            String Password=password.getText();
-            String sql = "select employee.NAME,employee.DEPARTMENTID,department.DEPARTMENTNAME,employee.DESIGNATION,employee.EMAIL from Employee inner join employeelogin on employee.ID=employeelogin.ID inner join department on department.departmentid=employee.departmentid where employee.ID='"+Id+"' and employeelogin.password='"+Password+"'";
-
+            String Id = id.getText();
+            String Password = password.getText();
+           String sql = "select employee.NAME,employee.DEPARTMENTID,department.DEPARTMENTNAME,employee.DESIGNATION,employee.EMAIL from Employee inner join employeelogin on employee.ID=employeelogin.ID inner join department on department.departmentid=employee.departmentid where employee.ID='" + Id + "' and employeelogin.password='" + Password + "'";
+//String sql="select employee.id, employee.NAME,employee.DEPARTMENTID,department.DEPARTMENTNAME,employee.DESIGNATION,employee.EMAIL, attendance.Date from Employee inner join employeelogin on employee.ID=employeelogin.ID inner join department on department.departmentid=employee.departmentid inner join attendance on attendance.id=employee.id where employee.ID='" + Id + "' and employeelogin.password='" + Password + "'";
             ResultSet rs = c.s.executeQuery(sql);
+            
             if (rs.next()) {
 
                 name.setText(rs.getString("NAME"));
-               
+
                 departmentid.setText(rs.getString("DEPARTMENTID"));
                 departmentname.setText(rs.getString("DEPARTMENTNAME"));
                 designation.setText(rs.getString("DESIGNATION"));
-            
+
                 email.setText(rs.getString("EMAIL"));
-             
+
                 //logic so that the id cant be changed by anyone
                 name.setEditable(false);
                 departmentid.setEditable(false);
@@ -400,48 +359,31 @@ e.setId(id.getText());
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void morningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_morningActionPerformed
-        // TODO add your handling code here:
-        if(status=="Present")
-        {
-        morning.setEnabled(true);
-        } morning.setEnabled(false);
-    }//GEN-LAST:event_morningActionPerformed
-
     private void presentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_presentActionPerformed
         // TODO add your handling code here:
-      
-            status="Present";
-       
-        
+        status = "Present";
     }//GEN-LAST:event_presentActionPerformed
 
     private void absentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_absentActionPerformed
-
-        // TODO add your handling code here:
-        status="Absent";
+// TODO add your handling code here:
+        status = "Absent";
     }//GEN-LAST:event_absentActionPerformed
 
     private void leaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveActionPerformed
         // TODO add your handling code here:
-        status="Leave";
+        status = "Leave";
     }//GEN-LAST:event_leaveActionPerformed
 
-    private void eveningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eveningActionPerformed
+    private void shiftKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_shiftKeyReleased
         // TODO add your handling code here:
-      if(status=="Present")
-        {
-        morning.setEnabled(true);
-        } evening.setEnabled(false);
-    }//GEN-LAST:event_eveningActionPerformed
+        String Shift = "^[12]$";
+        Pattern p = Pattern.compile(Shift);
+        Matcher m = p.matcher(shift.getText());
+        if (!m.matches()) {
 
-    private void departmentidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentidActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_departmentidActionPerformed
-
-    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emailActionPerformed
+            shift.setText("");
+        }
+    }//GEN-LAST:event_shiftKeyReleased
 
     /**
      * @param args the command line arguments
@@ -486,7 +428,6 @@ e.setId(id.getText());
     private javax.swing.JTextField departmentname;
     private javax.swing.JTextField designation;
     private javax.swing.JTextField email;
-    private javax.swing.JRadioButton evening;
     private javax.swing.JTextField id;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -502,7 +443,6 @@ e.setId(id.getText());
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton leave;
-    private javax.swing.JRadioButton morning;
     private javax.swing.JTextField name;
     private javax.swing.JPasswordField password;
     private javax.swing.JRadioButton present;
