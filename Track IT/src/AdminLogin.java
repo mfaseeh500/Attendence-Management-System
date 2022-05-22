@@ -140,8 +140,8 @@ public class AdminLogin extends javax.swing.JFrame {
         connect c1=new connect();
         String u=jTextField1.getText();
         String p=jPasswordField1.getText();
-        String q = "select * from login where USERNAME='"+u+"' and PASSWORD='"+p+"'";
-        ResultSet rs = c1.s.executeQuery(q);
+        String sql = "select * from login where USERNAME='"+u+"' and PASSWORD='"+p+"'";
+        ResultSet rs = c1.s.executeQuery(sql);
         if(rs.next()){
             dispose();
             AdminControls ac=new AdminControls();

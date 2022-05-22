@@ -64,7 +64,7 @@ public class UpdateStaff extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Track IT");
-        setLocation(new java.awt.Point(400, 130));
+        setLocation(new java.awt.Point(400, 90));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
@@ -158,17 +158,22 @@ public class UpdateStaff extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel9))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel9))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel7)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(age)
@@ -212,15 +217,14 @@ public class UpdateStaff extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(departmentid, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel7))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(departmentid, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel8))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(38, 38, 38)
-                        .addComponent(departmentname, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(departmentname, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(designation, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,7 +257,7 @@ public class UpdateStaff extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 585, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 575, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,6 +283,7 @@ public class UpdateStaff extends javax.swing.JFrame {
 
             String sql1 = "update employee set NAME = ?, AGE = ?,PHONENUMBER=?,DEPARTMENTID=?, DEPARTMENTNAME=?, DESIGNATION = ?, SALARY = ?, EMAIL=? where ID = ?";
             String sql2 = "update employeelogin set password=? where id=?";
+            
 //prepared statement for sql1
             PreparedStatement ps = c.c.prepareStatement(sql1);
             ps.setString(1, name.getText());
@@ -318,7 +323,7 @@ public class UpdateStaff extends javax.swing.JFrame {
         // SEARCH
         try {
             connect c = new connect();
-            String employee = "select employee.NAME,employee.AGE,employee.DEPARTMENTID,employee.DEPARTMENTNAME,employee.DESIGNATION,employee.SALARY,employee.EMAIL,employee.PHONENUMBER, employee.DOB ,employeelogin.PASSWORD from Employee inner join employeelogin on employee.ID=employeelogin.ID where employee.ID=?";
+            String employee = "select employee.NAME,employee.AGE,employee.DEPARTMENTID,department.DEPARTMENTNAME,employee.DESIGNATION,employee.SALARY,employee.EMAIL,employee.PHONENUMBER, employee.DOB ,employeelogin.PASSWORD from Employee inner join employeelogin on employee.ID=employeelogin.ID inner join Department on employee.departmentid=department.departmentid where employee.ID=?";
             PreparedStatement p = c.c.prepareStatement(employee);
             p.setString(1, id.getText());
             ResultSet rs = p.executeQuery();
@@ -327,7 +332,7 @@ public class UpdateStaff extends javax.swing.JFrame {
                 name.setText(rs.getString("NAME"));
                 age.setText(rs.getString("AGE"));
                 Phonenumber.setText(rs.getString("PHONENUMBER"));
-                departmentid.setText(rs.getString("SALARY"));
+                departmentid.setText(rs.getString("DEPARTMENTID"));
                 departmentname.setText(rs.getString("DEPARTMENTNAME"));
                 designation.setText(rs.getString("DESIGNATION"));
                 salary.setText(rs.getString("SALARY"));
@@ -336,6 +341,8 @@ public class UpdateStaff extends javax.swing.JFrame {
                 DOJ.setText(rs.getString("DOB"));
                 //logic so that the id cant be changed by anyone
                 id.setEditable(false);
+                 departmentid.setEditable(false);
+                 departmentname.setEditable(false);
                 DOJ.setEditable(false);
             } else {
                 JOptionPane.showMessageDialog(null, "RECORD NOT FOUND");

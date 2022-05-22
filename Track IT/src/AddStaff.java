@@ -2,13 +2,15 @@
 import javax.swing.JOptionPane;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author MUHAMMAD FASEEH
@@ -49,8 +51,6 @@ public class AddStaff extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         password = new javax.swing.JTextField();
         email = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        departmentname = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         phonenumber = new javax.swing.JTextField();
 
@@ -67,21 +67,43 @@ public class AddStaff extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        name.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameActionPerformed(evt);
+        name.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                nameFocusLost(evt);
+            }
+        });
+        name.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                nameKeyReleased(evt);
             }
         });
 
+        age.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                ageFocusLost(evt);
+            }
+        });
+
+        departmentid.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                departmentidFocusLost(evt);
+            }
+        });
         departmentid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 departmentidActionPerformed(evt);
             }
         });
 
-        designation.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                designationActionPerformed(evt);
+        designation.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                designationFocusLost(evt);
+            }
+        });
+
+        salary.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                salaryFocusLost(evt);
             }
         });
 
@@ -116,17 +138,31 @@ public class AddStaff extends javax.swing.JFrame {
         jLabel6.setText("Salary");
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("email");
+        jLabel7.setText("Email");
 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Password");
 
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Department Name");
+        password.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                passwordFocusLost(evt);
+            }
+        });
+
+        email.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                emailFocusLost(evt);
+            }
+        });
 
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Phone Number");
 
+        phonenumber.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                phonenumberFocusLost(evt);
+            }
+        });
         phonenumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 phonenumberActionPerformed(evt);
@@ -151,15 +187,14 @@ public class AddStaff extends javax.swing.JFrame {
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel9))
-                                .addGap(52, 52, 52))
+                                    .addComponent(jLabel5))
+                                .addGap(70, 70, 70))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -170,7 +205,6 @@ public class AddStaff extends javax.swing.JFrame {
                             .addComponent(name, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(age, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(departmentid, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(departmentname, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(108, Short.MAX_VALUE))
@@ -191,19 +225,15 @@ public class AddStaff extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(departmentid, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(departmentname, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(designation, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salary, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
@@ -215,7 +245,7 @@ public class AddStaff extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -251,7 +281,6 @@ public class AddStaff extends javax.swing.JFrame {
         e.setName(name.getText());
         e.setAge(age.getText());
         e.setDepartmentID(departmentid.getText());
-        e.setDepartmentname(departmentname.getText());
         e.setDesignation(designation.getText());
         e.setSalary(salary.getText());
         e.setEmail(email.getText());
@@ -260,7 +289,7 @@ public class AddStaff extends javax.swing.JFrame {
 
         try {
             connect c = new connect();
-            String sql1 = "insert into Employee(NAME,AGE,DEPARTMENTID,DEPARTMENTNAME,DESIGNATION,SALARY,EMAIL,PHONENUMBER,DOB) values('" + e.getName() + "','" + e.getAge() + "','" + e.getDepartmentID() + "','" + e.getDepartmentname() + "','" + e.getDesignation() + "','" + e.getSalary() + "','" + e.getEmail() + "','" + e.getPhonenumber() + "','" + java.time.LocalDate.now() + "')";
+            String sql1 = "insert into Employee(NAME,AGE,DEPARTMENTID,DESIGNATION,SALARY,EMAIL,PHONENUMBER,DOB) values('" + e.getName() + "','" + e.getAge() + "','" + e.getDepartmentID() + "','" + e.getDesignation() + "','" + e.getSalary() + "','" + e.getEmail() + "','" + e.getPhonenumber() + "','" + java.time.LocalDate.now() + "')";
             String sql2 = "insert into Employeelogin(PASSWORD) values('" + e.getPassword() + "')";
             c.s.addBatch(sql1);
             c.s.addBatch(sql2);
@@ -270,7 +299,7 @@ public class AddStaff extends javax.swing.JFrame {
             name.setText("");
             age.setText("");
             departmentid.setText("");
-            departmentname.setText("");
+
             designation.setText("");
             salary.setText("");
             email.setText("");
@@ -283,21 +312,96 @@ public class AddStaff extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameActionPerformed
-
     private void phonenumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phonenumberActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_phonenumberActionPerformed
 
-    private void designationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_designationActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_designationActionPerformed
-
     private void departmentidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentidActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_departmentidActionPerformed
+
+    private void nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameKeyReleased
+        // TODO add your handling code here:
+     
+    }//GEN-LAST:event_nameKeyReleased
+
+    private void emailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailFocusLost
+        // TODO add your handling code here:
+          String Email = "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$";
+          Pattern p = Pattern.compile(Email);
+        Matcher m = p.matcher(email.getText());
+        if (!m.matches()) {
+          email.setText("");
+        }
+    }//GEN-LAST:event_emailFocusLost
+
+    private void ageFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ageFocusLost
+        // TODO add your handling code here:
+          String Age = "^((1){1}(8|9){1}|(2|3|4|5){1}\\d{1}|(60))$";
+        Pattern p = Pattern.compile(Age);
+        Matcher m = p.matcher(age.getText());
+        if (!m.matches()) {
+
+            age.setText("");
+        }
+    }//GEN-LAST:event_ageFocusLost
+
+    private void phonenumberFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_phonenumberFocusLost
+        // TODO add your handling code here
+          String Phonenumber = "^[0][3][0-9]{9}";
+        Pattern p = Pattern.compile(Phonenumber);
+        Matcher m = p.matcher(phonenumber.getText());
+        if (!m.matches()) {
+
+            phonenumber.setText("");
+        }
+    }//GEN-LAST:event_phonenumberFocusLost
+
+    private void passwordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordFocusLost
+
+    private void nameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameFocusLost
+        // TODO add your handling code here:
+           String Name = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$";
+        Pattern p = Pattern.compile(Name);
+        Matcher m = p.matcher(name.getText());
+        if (!m.matches()) {
+            name.setText("");
+        }
+    }//GEN-LAST:event_nameFocusLost
+
+    private void departmentidFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_departmentidFocusLost
+        // TODO add your handling code here:
+          String Departmentid = "^[1234]$";
+        Pattern p = Pattern.compile(Departmentid);
+        Matcher m = p.matcher(departmentid.getText());
+        if (!m.matches()) {
+
+            departmentid.setText("");
+        }
+    }//GEN-LAST:event_departmentidFocusLost
+
+    private void designationFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_designationFocusLost
+        // TODO add your handling code here:
+            String Designation = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$";
+        Pattern p = Pattern.compile(Designation );
+        Matcher m = p.matcher(designation.getText());
+        if (!m.matches()) {
+           designation.setText("");
+        }
+    }//GEN-LAST:event_designationFocusLost
+
+    private void salaryFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_salaryFocusLost
+        // TODO add your handling code here:
+         String Salary = "^\\d{0,15}$";
+          Pattern p = Pattern.compile(Salary);
+        Matcher m = p.matcher(salary.getText());
+        if (!m.matches()) {
+          salary.setText("");
+        }
+      
+    }//GEN-LAST:event_salaryFocusLost
 
     /**
      * @param args the command line arguments
@@ -337,7 +441,6 @@ public class AddStaff extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField age;
     private javax.swing.JTextField departmentid;
-    private javax.swing.JTextField departmentname;
     private javax.swing.JTextField designation;
     private javax.swing.JTextField email;
     private javax.swing.JButton jButton1;
@@ -351,7 +454,6 @@ public class AddStaff extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField name;
     private javax.swing.JTextField password;

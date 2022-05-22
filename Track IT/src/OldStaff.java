@@ -8,21 +8,23 @@ import javax.swing.table.DefaultTableModel;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 /**
  *
  * @author MUHAMMAD FASEEH
  */
-public class ViewStaff extends javax.swing.JFrame {
+public class OldStaff extends javax.swing.JFrame {
 
     /**
-     * Creates new form ViewStaff
+     * Creates new form OldStaff
      */
-    public void showData() {
+    
+     public void showData() {
         Doubly v = new Doubly();
 
         try {
             connect c = new connect();
-            String sql = "select employee.ID,employee.NAME,employee.AGE,employee.DEPARTMENTID,department.DEPARTMENTNAME,employee.DESIGNATION,employee.SALARY,employee.EMAIL,employee.PHONENUMBER,employee.DOB, employeelogin.PASSWORD from Employee inner join employeelogin on employee.ID=employeelogin.ID inner join Department on employee.departmentid=department.departmentid";
+            String sql = "select employeehistory.ID,employeehistory.NAME,employeehistory.AGE,employeehistory.DEPARTMENTID,employeehistory.DEPARTMENTNAME,employeehistory.DESIGNATION,employeehistory.SALARY,employeehistory.EMAIL,employeehistory.PHONENUMBER,employeehistory.PASSWORD,employeehistory.DOB,employeehistory.DOL  from Employeehistory";
             ResultSet rs = c.s.executeQuery(sql);
             while (rs.next()) {
                 Employee e = new Employee();
@@ -37,7 +39,7 @@ public class ViewStaff extends javax.swing.JFrame {
                 e.setPhonenumber(rs.getString("PHONENUMBER"));
                 e.setPassword(rs.getString("PASSWORD"));
                 e.setDOJ(rs.getString("DOB"));
-
+e.setDOL(rs.getString("DOL"));
                 v.insertAtFirst(e);
 
             }
@@ -49,16 +51,17 @@ public class ViewStaff extends javax.swing.JFrame {
         while (i < v.Counter()) {
             Employee e = new Employee();
             e = (Employee) v.getAt(i);
-            String employee[] = {e.getId(), e.getName(), e.getAge(),e.getDepartmentID(),e.getDepartmentname(), e.getDesignation(), e.getSalary(),e.getEmail(),e.getPhonenumber(),e.getPassword(),e.getDOJ()};
+            String employee[] = {e.getId(), e.getName(), e.getAge(),e.getDepartmentID(),e.getDepartmentname(), e.getDesignation(), e.getSalary(),e.getEmail(),e.getPhonenumber(),e.getPassword(),e.getDOJ(),e.getDOL()};
             DefaultTableModel tb1Model = (DefaultTableModel) jTable1.getModel();
             tb1Model.addRow(employee);
             i++;
         }
     }
 
-    public ViewStaff() {
+    public OldStaff() {
+       
         initComponents();
-        showData();
+     showData();
     }
 
     /**
@@ -77,7 +80,6 @@ public class ViewStaff extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Track IT");
         setLocation(new java.awt.Point(0, 100));
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
@@ -91,11 +93,11 @@ public class ViewStaff extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "NAME", "AGE", "DEPARMENT ID", "DEPARTMENT NAME", "DESIGNATION", "SALARY", "EMAIL", "PHONE NUMBER", "PASSWORD", "DATE OF JOINING"
+                "ID", "NAME", "AGE", "DEPARMENT ID", "DEPARTMENT NAME", "DESIGNATION", "SALARY", "EMAIL", "PHONE NUMBER", "PASSWORD", "DATE OF JOINING", "DATE OF LEAVING"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -116,7 +118,7 @@ public class ViewStaff extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(665, Short.MAX_VALUE)
+                .addContainerGap(701, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(526, 526, 526))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -133,7 +135,7 @@ public class ViewStaff extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(86, 86, 86)
                 .addComponent(jButton1)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -144,7 +146,7 @@ public class ViewStaff extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -174,20 +176,20 @@ public class ViewStaff extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OldStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OldStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OldStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OldStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewStaff().setVisible(true);
+                new OldStaff().setVisible(true);
             }
         });
     }
