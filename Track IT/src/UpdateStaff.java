@@ -39,11 +39,9 @@ public class UpdateStaff extends javax.swing.JFrame {
         name = new javax.swing.JTextField();
         age = new javax.swing.JTextField();
         Phonenumber = new javax.swing.JTextField();
-        departmentid = new javax.swing.JTextField();
         id = new javax.swing.JTextField();
         salary = new javax.swing.JTextField();
         designation = new javax.swing.JTextField();
-        departmentname = new javax.swing.JTextField();
         password = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -52,8 +50,6 @@ public class UpdateStaff extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -77,12 +73,6 @@ public class UpdateStaff extends javax.swing.JFrame {
         name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameActionPerformed(evt);
-            }
-        });
-
-        departmentname.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                departmentnameActionPerformed(evt);
             }
         });
 
@@ -122,12 +112,6 @@ public class UpdateStaff extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("PHONE NUMBER");
 
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("DEPARTMENT NAME");
-
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("DEPARTMENT ID");
-
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("DESIGNATION");
 
@@ -151,42 +135,32 @@ public class UpdateStaff extends javax.swing.JFrame {
                 .addGap(161, 161, 161)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel9))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel7)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(age)
-                            .addComponent(name)
-                            .addComponent(id)
-                            .addComponent(departmentid)
-                            .addComponent(designation)
-                            .addComponent(departmentname)
-                            .addComponent(salary)
-                            .addComponent(Phonenumber)
-                            .addComponent(password)
-                            .addComponent(email)
-                            .addComponent(DOJ, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(age)
+                                .addComponent(name)
+                                .addComponent(designation)
+                                .addComponent(salary)
+                                .addComponent(Phonenumber)
+                                .addComponent(password)
+                                .addComponent(email)
+                                .addComponent(DOJ, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)))
                         .addGap(207, 207, 207))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(80, 80, 80)
@@ -199,11 +173,11 @@ public class UpdateStaff extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(59, 59, 59)
+                .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
@@ -215,37 +189,27 @@ public class UpdateStaff extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addGap(6, 6, 6)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(departmentid, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel8))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(departmentname, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(designation, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(salary, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(designation, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(salary, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(19, 19, 19)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12)
+                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(DOJ, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(DOJ, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jButton1)
@@ -281,20 +245,19 @@ public class UpdateStaff extends javax.swing.JFrame {
             connect c = new connect();
             //String employee= "update employee inner join employeelogin on employee.id=employeelogin.id  set employee.name=?, employee.age=?, employee.phonenumber=?, employee.departmentid=?, employee.departmentname=?, employee.designation=?, employee.salary=?,employee.email, employeelogin.password=? where employee.id=?";
 
-            String sql1 = "update employee set NAME = ?, AGE = ?,PHONENUMBER=?,DEPARTMENTID=?, DEPARTMENTNAME=?, DESIGNATION = ?, SALARY = ?, EMAIL=? where ID = ?";
+            String sql1 = "update employee set NAME = ?, AGE = ?,PHONENUMBER=?, DESIGNATION = ?, SALARY = ?, EMAIL=? where ID = ?";
             String sql2 = "update employeelogin set password=? where id=?";
-            
+         
 //prepared statement for sql1
             PreparedStatement ps = c.c.prepareStatement(sql1);
             ps.setString(1, name.getText());
             ps.setString(2, age.getText());
             ps.setString(3, Phonenumber.getText());
-            ps.setString(4, departmentid.getText());
-            ps.setString(5, departmentname.getText());
-            ps.setString(6, designation.getText());
-            ps.setString(7, salary.getText());
-            ps.setString(8, email.getText());
-            ps.setString(9, id.getText());
+          
+            ps.setString(4, designation.getText());
+            ps.setString(5, salary.getText());
+            ps.setString(6, email.getText());
+            ps.setString(7, id.getText());
 //prepared statement for sql2
             PreparedStatement Ps = c.c.prepareStatement(sql2);
             Ps.setString(1, password.getText());
@@ -307,13 +270,13 @@ public class UpdateStaff extends javax.swing.JFrame {
             id.setText("");
             age.setText("");
             Phonenumber.setText("");
-            departmentid.setText("");
-            departmentname.setText("");
+           
             designation.setText("");
             salary.setText("");
             password.setText("");
             email.setText("");
             DOJ.setText("");
+            id.setEditable(true);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -323,7 +286,7 @@ public class UpdateStaff extends javax.swing.JFrame {
         // SEARCH
         try {
             connect c = new connect();
-            String employee = "select employee.NAME,employee.AGE,employee.DEPARTMENTID,department.DEPARTMENTNAME,employee.DESIGNATION,employee.SALARY,employee.EMAIL,employee.PHONENUMBER, employee.DOB ,employeelogin.PASSWORD from Employee inner join employeelogin on employee.ID=employeelogin.ID inner join Department on employee.departmentid=department.departmentid where employee.ID=?";
+            String employee = "select employee.NAME,employee.AGE,employee.DESIGNATION,employee.SALARY,employee.EMAIL,employee.PHONENUMBER, employee.DOB ,employeelogin.PASSWORD from Employee inner join employeelogin on employee.ID=employeelogin.ID inner join Department on employee.departmentid=department.departmentid where employee.ID=?";
             PreparedStatement p = c.c.prepareStatement(employee);
             p.setString(1, id.getText());
             ResultSet rs = p.executeQuery();
@@ -332,8 +295,7 @@ public class UpdateStaff extends javax.swing.JFrame {
                 name.setText(rs.getString("NAME"));
                 age.setText(rs.getString("AGE"));
                 Phonenumber.setText(rs.getString("PHONENUMBER"));
-                departmentid.setText(rs.getString("DEPARTMENTID"));
-                departmentname.setText(rs.getString("DEPARTMENTNAME"));
+             
                 designation.setText(rs.getString("DESIGNATION"));
                 salary.setText(rs.getString("SALARY"));
                 email.setText(rs.getString("EMAIL"));
@@ -341,21 +303,16 @@ public class UpdateStaff extends javax.swing.JFrame {
                 DOJ.setText(rs.getString("DOB"));
                 //logic so that the id cant be changed by anyone
                 id.setEditable(false);
-                 departmentid.setEditable(false);
-                 departmentname.setEditable(false);
                 DOJ.setEditable(false);
             } else {
                 JOptionPane.showMessageDialog(null, "RECORD NOT FOUND");
+                    id.setText("");
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void departmentnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentnameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_departmentnameActionPerformed
 
     private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
         // TODO add your handling code here:
@@ -402,8 +359,6 @@ public class UpdateStaff extends javax.swing.JFrame {
     private javax.swing.JTextField DOJ;
     private javax.swing.JTextField Phonenumber;
     private javax.swing.JTextField age;
-    private javax.swing.JTextField departmentid;
-    private javax.swing.JTextField departmentname;
     private javax.swing.JTextField designation;
     private javax.swing.JTextField email;
     private javax.swing.JTextField id;
@@ -419,8 +374,6 @@ public class UpdateStaff extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField name;

@@ -22,7 +22,8 @@ public class ViewStaff extends javax.swing.JFrame {
 
         try {
             connect c = new connect();
-            String sql = "select employee.ID,employee.NAME,employee.AGE,employee.DEPARTMENTID,department.DEPARTMENTNAME,employee.DESIGNATION,employee.SALARY,employee.EMAIL,employee.PHONENUMBER,employee.DOB, employeelogin.PASSWORD from Employee inner join employeelogin on employee.ID=employeelogin.ID inner join Department on employee.departmentid=department.departmentid";
+            //String sql = "select employee.ID,employee.NAME,employee.AGE,employee.DEPARTMENTID,department.DEPARTMENTNAME,employee.DESIGNATION,employee.SALARY,employee.EMAIL,employee.PHONENUMBER,employee.DOB, employeelogin.PASSWORD from Employee inner join employeelogin on employee.ID=employeelogin.ID inner join Department on employee.departmentid=department.departmentid";
+           String sql="select * from employee_data";
             ResultSet rs = c.s.executeQuery(sql);
             while (rs.next()) {
                 Employee e = new Employee();

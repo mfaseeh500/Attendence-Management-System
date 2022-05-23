@@ -362,7 +362,7 @@ public class DeleteStaff extends javax.swing.JFrame {
         try {
             connect c = new connect();
             //logic for inserting the data to be deleted in another table
-            String sql1 = "insert into employeehistory(ID,NAME,AGE,DEPARTMENTID,DEPARTMENTNAME,DESIGNATION,SALARY,EMAIL,PHONENUMBER,password,DOB,DOL) values('" + e.getId() + "','" + e.getName() + "','" + e.getAge() + "','" + e.getDepartmentID() + "','" + e.getDepartmentname() + "','" + e.getDesignation() + "','" + e.getSalary() + "','" + e.getEmail() + "','" + e.getPhonenumber() + "','" + e.getPassword() + "','" + e.getDOJ() + "','" + java.time.LocalDate.now() + "')";
+            String sql1 = "insert into employeehistory(ID,NAME,AGE,DEPARTMENTID,DESIGNATION,SALARY,EMAIL,PHONENUMBER,password,DOB,DOL) values('" + e.getId() + "','" + e.getName() + "','" + e.getAge() + "','" + e.getDepartmentID() + "','" + e.getDesignation() + "','" + e.getSalary() + "','" + e.getEmail() + "','" + e.getPhonenumber() + "','" + e.getPassword() + "','" + e.getDOJ() + "','" + java.time.LocalDate.now() + "')";
        
 
             c.s.executeUpdate(sql1);
@@ -389,6 +389,7 @@ id.setText("");
             email.setText("");
             Phonenumber.setText("");
             password.setText("");
+            DOJ.setText("");
         } catch (Exception ee) {
             JOptionPane.showMessageDialog(null, ee);
 

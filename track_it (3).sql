@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 22, 2022 at 08:16 PM
+-- Generation Time: May 23, 2022 at 05:53 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -42,15 +42,13 @@ CREATE TABLE IF NOT EXISTS `attendance` (
   UNIQUE KEY `UC_attendance` (`id`,`Date`),
   KEY `departmentid` (`departmentid`),
   KEY `shiftid` (`shiftid`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `attendance`
 --
 
 INSERT INTO `attendance` (`Attendanceid`, `id`, `name`, `departmentid`, `designation`, `email`, `status`, `shiftid`, `Date`) VALUES
-(1, 1, 'Faseeh', 1, 'Manager', 'cfaseeh@gmail.com', 'Absent', 1, '2022-05-22'),
-(2, 1, 'Faseeh', 1, 'Manager', 'cfaseeh@gmail.com', 'Present', 2, '2022-05-23'),
 (4, 2, 'Ali Zafar', 1, 'Supervisor', 'Alizafar@gmail.com', 'Present', 2, '2022-05-23');
 
 -- --------------------------------------------------------
@@ -100,7 +98,6 @@ CREATE TABLE IF NOT EXISTS `employee` (
 --
 
 INSERT INTO `employee` (`ID`, `NAME`, `AGE`, `DEPARTMENTID`, `DESIGNATION`, `SALARY`, `EMAIL`, `PHONENUMBER`, `DOB`) VALUES
-(1, 'Faseeh', 25, 1, 'Manager', 60000, 'cfaseeh@gmail.com', '03313672289', '2022-05-20'),
 (2, 'Ali Zafar', 23, 1, 'Supervisor', 45000, 'Alizafar@gmail.com', '03347837789', '2022-05-20');
 
 -- --------------------------------------------------------
@@ -126,6 +123,13 @@ CREATE TABLE IF NOT EXISTS `employeehistory` (
   KEY `employeehistory_ibfk_1` (`departmentid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `employeehistory`
+--
+
+INSERT INTO `employeehistory` (`id`, `Name`, `age`, `departmentid`, `designation`, `salary`, `email`, `phonenumber`, `password`, `DOB`, `DOL`) VALUES
+(1, 'Faseeh', 26, 1, 'Manager', 60000, 'cfaseeh@gmail.com', '03313672289', 'abc.123', '2022-05-20', '2022-05-23');
+
 -- --------------------------------------------------------
 
 --
@@ -144,8 +148,28 @@ CREATE TABLE IF NOT EXISTS `employeelogin` (
 --
 
 INSERT INTO `employeelogin` (`ID`, `Password`) VALUES
-(1, 'abc.123'),
 (2, 'aeiou123');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `employee_data`
+-- (See below for the actual view)
+--
+DROP VIEW IF EXISTS `employee_data`;
+CREATE TABLE IF NOT EXISTS `employee_data` (
+`ID` int(20)
+,`NAME` varchar(30)
+,`AGE` int(2)
+,`DEPARTMENTID` int(4)
+,`DEPARTMENTNAME` varchar(25)
+,`DESIGNATION` varchar(15)
+,`SALARY` int(8)
+,`EMAIL` varchar(30)
+,`PHONENUMBER` varchar(15)
+,`DOB` varchar(11)
+,`PASSWORD` varchar(15)
+);
 
 -- --------------------------------------------------------
 
@@ -169,6 +193,28 @@ INSERT INTO `login` (`username`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `past_employees`
+-- (See below for the actual view)
+--
+DROP VIEW IF EXISTS `past_employees`;
+CREATE TABLE IF NOT EXISTS `past_employees` (
+`ID` int(20)
+,`NAME` varchar(25)
+,`AGE` int(3)
+,`DEPARTMENTID` int(20)
+,`DEPARTMENTNAME` varchar(25)
+,`DESIGNATION` varchar(25)
+,`SALARY` int(10)
+,`EMAIL` varchar(30)
+,`PHONENUMBER` varchar(20)
+,`PASSWORD` varchar(20)
+,`DOB` varchar(10)
+,`DOL` varchar(10)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `shift`
 --
 
@@ -188,6 +234,26 @@ INSERT INTO `shift` (`Shiftid`, `Shiftname`, `Shifttiming`) VALUES
 (1, 'Morning', '9:00 am - 5:00 pm'),
 (2, 'Evening', '12:00 pm - 8:00 pm');
 
+-- --------------------------------------------------------
+
+--
+-- Structure for view `employee_data`
+--
+DROP TABLE IF EXISTS `employee_data`;
+
+DROP VIEW IF EXISTS `employee_data`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `employee_data`  AS  select `employee`.`ID` AS `ID`,`employee`.`NAME` AS `NAME`,`employee`.`AGE` AS `AGE`,`employee`.`DEPARTMENTID` AS `DEPARTMENTID`,`department`.`departmentname` AS `DEPARTMENTNAME`,`employee`.`DESIGNATION` AS `DESIGNATION`,`employee`.`SALARY` AS `SALARY`,`employee`.`EMAIL` AS `EMAIL`,`employee`.`PHONENUMBER` AS `PHONENUMBER`,`employee`.`DOB` AS `DOB`,`employeelogin`.`Password` AS `PASSWORD` from ((`employee` join `employeelogin` on((`employee`.`ID` = `employeelogin`.`ID`))) join `department` on((`employee`.`DEPARTMENTID` = `department`.`departmentid`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `past_employees`
+--
+DROP TABLE IF EXISTS `past_employees`;
+
+DROP VIEW IF EXISTS `past_employees`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `past_employees`  AS  select `employeehistory`.`id` AS `ID`,`employeehistory`.`Name` AS `NAME`,`employeehistory`.`age` AS `AGE`,`employeehistory`.`departmentid` AS `DEPARTMENTID`,`department`.`departmentname` AS `DEPARTMENTNAME`,`employeehistory`.`designation` AS `DESIGNATION`,`employeehistory`.`salary` AS `SALARY`,`employeehistory`.`email` AS `EMAIL`,`employeehistory`.`phonenumber` AS `PHONENUMBER`,`employeehistory`.`password` AS `PASSWORD`,`employeehistory`.`DOB` AS `DOB`,`employeehistory`.`DOL` AS `DOL` from (`employeehistory` join `department` on((`employeehistory`.`departmentid` = `department`.`departmentid`))) ;
+
 --
 -- Constraints for dumped tables
 --
@@ -204,19 +270,13 @@ ALTER TABLE `attendance`
 -- Constraints for table `employee`
 --
 ALTER TABLE `employee`
-  ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`DEPARTMENTID`) REFERENCES `department` (`departmentid`);
+  ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`DEPARTMENTID`) REFERENCES `department` (`departmentid`) ON DELETE NO ACTION;
 
 --
 -- Constraints for table `employeehistory`
 --
 ALTER TABLE `employeehistory`
   ADD CONSTRAINT `employeehistory_ibfk_1` FOREIGN KEY (`departmentid`) REFERENCES `department` (`departmentid`);
-
---
--- Constraints for table `employeelogin`
---
-ALTER TABLE `employeelogin`
-  ADD CONSTRAINT `employeelogin_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `employee` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
