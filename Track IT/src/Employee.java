@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  */
 public class Employee {
     private String id,name,age,d_ID,d_name,designation,salary,email,p_num,password, doj, dol;
-  
+  private String status,shiftid,shiftname,shifttiming,date;
 public String getId(){
     return id;
 }
@@ -89,5 +89,39 @@ public void setDOJ(String doj){
 public void setDOL(String dol){
     this.dol=dol;
 }
-
+public String getStatus(){
+    return status;
+}
+public String getShiftid(){
+    return shiftid;
+}
+public String getShiftname(){
+    return shiftname;
+}
+public String getShifttiming(){
+    return shifttiming;
+}
+public String getDate(){
+    return date;
+}
+public void setStatus(String status){
+    
+    this.status=status;
+}
+public void setShiftid(String shiftid){
+    
+    this.shiftid=shiftid;
+}
+public void setShiftname(String shiftname){
+    
+    this.shiftname=shiftname;
+}
+public void setShifttiming(String shifttiming){
+    
+    this.shifttiming=shifttiming;
+}
+public void setDate(String date){
+    
+    this.date=date;
+}
 }

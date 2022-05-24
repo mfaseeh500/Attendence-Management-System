@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 23, 2022 at 05:53 PM
+-- Generation Time: May 24, 2022 at 07:25 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -31,10 +31,7 @@ DROP TABLE IF EXISTS `attendance`;
 CREATE TABLE IF NOT EXISTS `attendance` (
   `Attendanceid` int(10) NOT NULL AUTO_INCREMENT,
   `id` int(10) NOT NULL,
-  `name` varchar(25) NOT NULL,
   `departmentid` int(10) NOT NULL,
-  `designation` varchar(25) NOT NULL,
-  `email` varchar(30) NOT NULL,
   `status` varchar(15) NOT NULL,
   `shiftid` int(10) NOT NULL,
   `Date` varchar(20) NOT NULL,
@@ -42,14 +39,7 @@ CREATE TABLE IF NOT EXISTS `attendance` (
   UNIQUE KEY `UC_attendance` (`id`,`Date`),
   KEY `departmentid` (`departmentid`),
   KEY `shiftid` (`shiftid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `attendance`
---
-
-INSERT INTO `attendance` (`Attendanceid`, `id`, `name`, `departmentid`, `designation`, `email`, `status`, `shiftid`, `Date`) VALUES
-(4, 2, 'Ali Zafar', 1, 'Supervisor', 'Alizafar@gmail.com', 'Present', 2, '2022-05-23');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -70,7 +60,9 @@ CREATE TABLE IF NOT EXISTS `department` (
 
 INSERT INTO `department` (`departmentid`, `departmentname`) VALUES
 (1, 'Human Resources'),
-(2, 'Accounts');
+(2, 'Accounts'),
+(3, 'Laboratory'),
+(4, 'IT');
 
 -- --------------------------------------------------------
 
@@ -91,14 +83,7 @@ CREATE TABLE IF NOT EXISTS `employee` (
   `DOB` varchar(11) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `employee_ibfk_1` (`DEPARTMENTID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `employee`
---
-
-INSERT INTO `employee` (`ID`, `NAME`, `AGE`, `DEPARTMENTID`, `DESIGNATION`, `SALARY`, `EMAIL`, `PHONENUMBER`, `DOB`) VALUES
-(2, 'Ali Zafar', 23, 1, 'Supervisor', 45000, 'Alizafar@gmail.com', '03347837789', '2022-05-20');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -123,13 +108,6 @@ CREATE TABLE IF NOT EXISTS `employeehistory` (
   KEY `employeehistory_ibfk_1` (`departmentid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `employeehistory`
---
-
-INSERT INTO `employeehistory` (`id`, `Name`, `age`, `departmentid`, `designation`, `salary`, `email`, `phonenumber`, `password`, `DOB`, `DOL`) VALUES
-(1, 'Faseeh', 26, 1, 'Manager', 60000, 'cfaseeh@gmail.com', '03313672289', 'abc.123', '2022-05-20', '2022-05-23');
-
 -- --------------------------------------------------------
 
 --
@@ -141,14 +119,28 @@ CREATE TABLE IF NOT EXISTS `employeelogin` (
   `ID` int(20) NOT NULL AUTO_INCREMENT,
   `Password` varchar(15) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `employeelogin`
+-- Stand-in structure for view `employee_attendance`
+-- (See below for the actual view)
 --
-
-INSERT INTO `employeelogin` (`ID`, `Password`) VALUES
-(2, 'aeiou123');
+DROP VIEW IF EXISTS `employee_attendance`;
+CREATE TABLE IF NOT EXISTS `employee_attendance` (
+`id` int(10)
+,`name` varchar(30)
+,`DEPARTMENTID` int(10)
+,`departmentname` varchar(25)
+,`DESIGNATION` varchar(15)
+,`EMAIL` varchar(30)
+,`shiftid` int(10)
+,`Shiftname` text
+,`Shifttiming` varchar(20)
+,`status` varchar(15)
+,`Date` varchar(20)
+);
 
 -- --------------------------------------------------------
 
@@ -237,6 +229,16 @@ INSERT INTO `shift` (`Shiftid`, `Shiftname`, `Shifttiming`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure for view `employee_attendance`
+--
+DROP TABLE IF EXISTS `employee_attendance`;
+
+DROP VIEW IF EXISTS `employee_attendance`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `employee_attendance`  AS  select `attendance`.`id` AS `id`,`employee`.`NAME` AS `name`,`attendance`.`departmentid` AS `DEPARTMENTID`,`department`.`departmentname` AS `departmentname`,`employee`.`DESIGNATION` AS `DESIGNATION`,`employee`.`EMAIL` AS `EMAIL`,`attendance`.`shiftid` AS `shiftid`,`shift`.`Shiftname` AS `Shiftname`,`shift`.`Shifttiming` AS `Shifttiming`,`attendance`.`status` AS `status`,`attendance`.`Date` AS `Date` from (((`attendance` join `employee` on((`employee`.`ID` = `attendance`.`id`))) join `department` on((`attendance`.`departmentid` = `department`.`departmentid`))) join `shift` on((`shift`.`Shiftid` = `attendance`.`shiftid`))) ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `employee_data`
 --
 DROP TABLE IF EXISTS `employee_data`;
@@ -262,7 +264,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- Constraints for table `attendance`
 --
 ALTER TABLE `attendance`
-  ADD CONSTRAINT `attendance_ibfk_1` FOREIGN KEY (`id`) REFERENCES `employee` (`ID`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `attendance_ibfk_1` FOREIGN KEY (`id`) REFERENCES `employee` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `attendance_ibfk_2` FOREIGN KEY (`departmentid`) REFERENCES `department` (`departmentid`),
   ADD CONSTRAINT `attendance_ibfk_3` FOREIGN KEY (`shiftid`) REFERENCES `shift` (`Shiftid`);
 
