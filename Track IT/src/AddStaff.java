@@ -47,10 +47,12 @@ public class AddStaff extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        password = new javax.swing.JTextField();
+        shift = new javax.swing.JTextField();
         email = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         phonenumber = new javax.swing.JTextField();
+        password = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Track IT");
@@ -121,29 +123,29 @@ public class AddStaff extends javax.swing.JFrame {
         });
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Name");
+        jLabel2.setText("NAME");
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Department ID");
+        jLabel3.setText("DEPARTMENT ID");
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Age");
+        jLabel4.setText("AGE");
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Designation");
+        jLabel5.setText("DESIGNATION");
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Salary");
+        jLabel6.setText("SALARY");
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Email");
+        jLabel7.setText("EMAIL");
 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Password");
+        jLabel8.setText("PASSWORD");
 
-        password.addFocusListener(new java.awt.event.FocusAdapter() {
+        shift.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                passwordFocusLost(evt);
+                shiftFocusLost(evt);
             }
         });
 
@@ -154,7 +156,7 @@ public class AddStaff extends javax.swing.JFrame {
         });
 
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel19.setText("Phone Number");
+        jLabel19.setText("PHONE NUMBER");
 
         phonenumber.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -167,6 +169,8 @@ public class AddStaff extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setText("SHIFT ID");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -174,11 +178,7 @@ public class AddStaff extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(167, 167, 167)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,8 +191,9 @@ public class AddStaff extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -203,8 +204,13 @@ public class AddStaff extends javax.swing.JFrame {
                             .addComponent(name, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(age, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(departmentid, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(shift, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
                 .addContainerGap(108, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -241,9 +247,13 @@ public class AddStaff extends javax.swing.JFrame {
                     .addComponent(jLabel19))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(shift, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -283,11 +293,12 @@ public class AddStaff extends javax.swing.JFrame {
         e.setSalary(salary.getText());
         e.setEmail(email.getText());
         e.setPhonenumber(phonenumber.getText());
+        e.setShiftid(shift.getText());
         e.setPassword(password.getText());
 
         try {
             connect c = new connect();
-            String sql1 = "insert into Employee(NAME,AGE,DEPARTMENTID,DESIGNATION,SALARY,EMAIL,PHONENUMBER,DOB) values('" + e.getName() + "','" + e.getAge() + "','" + e.getDepartmentID() + "','" + e.getDesignation() + "','" + e.getSalary() + "','" + e.getEmail() + "','" + e.getPhonenumber() + "','" + java.time.LocalDate.now() + "')";
+            String sql1 = "insert into Employee(NAME,AGE,DEPARTMENTID,DESIGNATION,SALARY,EMAIL,PHONENUMBER,DOB,SHIFTID) values('" + e.getName() + "','" + e.getAge() + "','" + e.getDepartmentID() + "','" + e.getDesignation() + "','" + e.getSalary() + "','" + e.getEmail() + "','" + e.getPhonenumber() + "','" + java.time.LocalDate.now() + "','" + e.getShiftid() + "')";
             String sql2 = "insert into Employeelogin(PASSWORD) values('" + e.getPassword() + "')";
             c.s.addBatch(sql1);
             c.s.addBatch(sql2);
@@ -302,6 +313,7 @@ public class AddStaff extends javax.swing.JFrame {
             salary.setText("");
             email.setText("");
             phonenumber.setText("");
+            shift.setText("");
             password.setText("");
         } catch (Exception ee) {
             JOptionPane.showMessageDialog(null, ee);
@@ -355,9 +367,16 @@ public class AddStaff extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_phonenumberFocusLost
 
-    private void passwordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFocusLost
+    private void shiftFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_shiftFocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_passwordFocusLost
+          String Shift = "^[12]$";
+        Pattern p = Pattern.compile(Shift);
+        Matcher m = p.matcher(shift.getText());
+        if (!m.matches()) {
+
+            shift.setText("");
+        }
+    }//GEN-LAST:event_shiftFocusLost
 
     private void nameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameFocusLost
         // TODO add your handling code here:
@@ -452,10 +471,12 @@ public class AddStaff extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField name;
     private javax.swing.JTextField password;
     private javax.swing.JTextField phonenumber;
     private javax.swing.JTextField salary;
+    private javax.swing.JTextField shift;
     // End of variables declaration//GEN-END:variables
 }

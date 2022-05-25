@@ -303,7 +303,7 @@ Date d;
 
         try {
             connect c = new connect();
-            String sql1 = "insert into Attendance(ID,NAME,DEPARTMENTID,DESIGNATION,EMAIL,Status,Shiftid,Date) values('" + e.getId() + "','" + e.getName() + "','" + e.getDepartmentID() + "','" + e.getDesignation() + "','" + e.getEmail() + "','" + status + "','" + shift.getText() + "','" + java.time.LocalDate.now() + "')";
+            String sql1 = "insert into Attendance(ID,DEPARTMENTID,Status,Shiftid,Date) values('" + e.getId() + "','" + e.getDepartmentID() + "','" + status + "','" + shift.getText() + "','" + java.time.LocalDate.now() + "')";
 
             c.s.addBatch(sql1);
 
@@ -342,8 +342,8 @@ u.setVisible(true);
             
             if (rs.next()) {
 
-                name.setText(rs.getString("NAME"));
-
+             
+name.setText(rs.getString("NAME"));
                 departmentid.setText(rs.getString("DEPARTMENTID"));
                 departmentname.setText(rs.getString("DEPARTMENTNAME"));
                 designation.setText(rs.getString("DESIGNATION"));

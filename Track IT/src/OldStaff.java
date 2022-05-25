@@ -8,7 +8,6 @@ import javax.swing.table.DefaultTableModel;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author MUHAMMAD FASEEH
@@ -18,14 +17,13 @@ public class OldStaff extends javax.swing.JFrame {
     /**
      * Creates new form OldStaff
      */
-    
-     public void showData() {
+    public void showData() {
         Doubly v = new Doubly();
 
         try {
             connect c = new connect();
             //String sql = "select employeehistory.ID,employeehistory.NAME,employeehistory.AGE,employeehistory.DEPARTMENTID,employeehistory.DEPARTMENTNAME,employeehistory.DESIGNATION,employeehistory.SALARY,employeehistory.EMAIL,employeehistory.PHONENUMBER,employeehistory.PASSWORD,employeehistory.DOB,employeehistory.DOL  from Employeehistory";
-           String sql="select * from past_employees";
+            String sql = "select * from past_employees";
             ResultSet rs = c.s.executeQuery(sql);
             while (rs.next()) {
                 Employee e = new Employee();
@@ -40,7 +38,7 @@ public class OldStaff extends javax.swing.JFrame {
                 e.setPhonenumber(rs.getString("PHONENUMBER"));
                 e.setPassword(rs.getString("PASSWORD"));
                 e.setDOJ(rs.getString("DOB"));
-e.setDOL(rs.getString("DOL"));
+                e.setDOL(rs.getString("DOL"));
                 v.insertAtFirst(e);
 
             }
@@ -52,7 +50,7 @@ e.setDOL(rs.getString("DOL"));
         while (i < v.Counter()) {
             Employee e = new Employee();
             e = (Employee) v.getAt(i);
-            String employee[] = {e.getId(), e.getName(), e.getAge(),e.getDepartmentID(),e.getDepartmentname(), e.getDesignation(), e.getSalary(),e.getEmail(),e.getPhonenumber(),e.getPassword(),e.getDOJ(),e.getDOL()};
+            String employee[] = {e.getId(), e.getName(), e.getAge(), e.getDepartmentID(), e.getDepartmentname(), e.getDesignation(), e.getSalary(), e.getEmail(), e.getPhonenumber(), e.getPassword(), e.getDOJ(), e.getDOL()};
             DefaultTableModel tb1Model = (DefaultTableModel) jTable1.getModel();
             tb1Model.addRow(employee);
             i++;
@@ -60,9 +58,9 @@ e.setDOL(rs.getString("DOL"));
     }
 
     public OldStaff() {
-       
+
         initComponents();
-     showData();
+        showData();
     }
 
     /**
@@ -95,11 +93,11 @@ e.setDOL(rs.getString("DOL"));
 
             },
             new String [] {
-                "ID", "NAME", "AGE", "DEPARMENT ID", "DESIGNATION", "SALARY", "EMAIL", "PHONE NUMBER", "PASSWORD", "DATE OF JOINING", "DATE OF LEAVING"
+                "ID", "NAME", "AGE", "DEPARMENT ID", "DEPARTMENT NAME", "DESIGNATION", "SALARY", "EMAIL", "PHONE NUMBER", "PASSWORD", "DATE OF JOINING", "DATE OF LEAVING"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, true
+                false, false, false, false, true, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
