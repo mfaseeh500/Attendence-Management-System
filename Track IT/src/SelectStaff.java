@@ -158,6 +158,7 @@ Date d;
             }
         });
 
+        shift.setEnabled(false);
         shift.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 shiftKeyReleased(evt);
@@ -336,7 +337,7 @@ u.setVisible(true);
             connect c = new connect();
             String Id = id.getText();
             String Password = password.getText();
-           String sql = "select employee.NAME,employee.DEPARTMENTID,department.DEPARTMENTNAME,employee.DESIGNATION,employee.EMAIL from Employee inner join employeelogin on employee.ID=employeelogin.ID inner join department on department.departmentid=employee.departmentid where employee.ID='" + Id + "' and employeelogin.password='" + Password + "'";
+           String sql = "select employee.NAME,employee.DEPARTMENTID,department.DEPARTMENTNAME,employee.DESIGNATION,employee.EMAIL,employee.Shiftid from Employee inner join employeelogin on employee.ID=employeelogin.ID inner join department on department.departmentid=employee.departmentid where employee.ID='" + Id + "' and employeelogin.password='" + Password + "'";
 //String sql="select employee.id, employee.NAME,employee.DEPARTMENTID,department.DEPARTMENTNAME,employee.DESIGNATION,employee.EMAIL, attendance.Date from Employee inner join employeelogin on employee.ID=employeelogin.ID inner join department on department.departmentid=employee.departmentid inner join attendance on attendance.id=employee.id where employee.ID='" + Id + "' and employeelogin.password='" + Password + "'";
             ResultSet rs = c.s.executeQuery(sql);
             
@@ -349,6 +350,7 @@ name.setText(rs.getString("NAME"));
                 designation.setText(rs.getString("DESIGNATION"));
 
                 email.setText(rs.getString("EMAIL"));
+                shift.setText(rs.getString("SHIFTID"));
 
                 //logic so that the id cant be changed by anyone
                 name.setEditable(false);
@@ -385,7 +387,7 @@ name.setText(rs.getString("NAME"));
         if (!m.matches()) {
 
             shift.setText("");
-        }
+            }
     }//GEN-LAST:event_shiftKeyReleased
 
     /**

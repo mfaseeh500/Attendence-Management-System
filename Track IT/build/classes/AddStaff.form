@@ -147,7 +147,7 @@
                       <Component id="password" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="18" max="32767" attributes="0"/>
+                  <EmptySpace pref="23" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -180,7 +180,6 @@
         <Component class="javax.swing.JTextField" name="name">
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="nameFocusLost"/>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nameKeyReleased"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="age">
@@ -191,7 +190,6 @@
         <Component class="javax.swing.JTextField" name="departmentid">
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="departmentidFocusLost"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="departmentidActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="designation">
@@ -298,13 +296,15 @@
         <Component class="javax.swing.JTextField" name="phonenumber">
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="phonenumberFocusLost"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="phonenumberActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="password">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="SHIFT ID"/>
           </Properties>
         </Component>

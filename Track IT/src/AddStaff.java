@@ -20,6 +20,7 @@ public class AddStaff extends javax.swing.JFrame {
      */
     public AddStaff() {
         initComponents();
+       
     }
 
     /**
@@ -72,11 +73,6 @@ public class AddStaff extends javax.swing.JFrame {
                 nameFocusLost(evt);
             }
         });
-        name.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                nameKeyReleased(evt);
-            }
-        });
 
         age.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -87,11 +83,6 @@ public class AddStaff extends javax.swing.JFrame {
         departmentid.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 departmentidFocusLost(evt);
-            }
-        });
-        departmentid.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                departmentidActionPerformed(evt);
             }
         });
 
@@ -163,12 +154,8 @@ public class AddStaff extends javax.swing.JFrame {
                 phonenumberFocusLost(evt);
             }
         });
-        phonenumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                phonenumberActionPerformed(evt);
-            }
-        });
 
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("SHIFT ID");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -253,7 +240,7 @@ public class AddStaff extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -321,19 +308,6 @@ public class AddStaff extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void phonenumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phonenumberActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_phonenumberActionPerformed
-
-    private void departmentidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentidActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_departmentidActionPerformed
-
-    private void nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameKeyReleased
-        // TODO add your handling code here:
-     
-    }//GEN-LAST:event_nameKeyReleased
 
     private void emailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailFocusLost
         // TODO add your handling code here:
