@@ -282,8 +282,10 @@ public class AddStaff extends javax.swing.JFrame {
         e.setPhonenumber(phonenumber.getText());
         e.setShiftid(shift.getText());
         e.setPassword(password.getText());
-
-        try {
+if(name.getText().isEmpty() && age.getText().isEmpty() && departmentid.getText().isEmpty() && designation.getText().isEmpty() && salary.getText().isEmpty() && email.getText().isEmpty() && phonenumber.getText().isEmpty() && shift.getText().isEmpty() && password.getText().isEmpty()){
+      JOptionPane.showMessageDialog(null, "THESE FIELDS CANNOT BE LEFT EMPTY");
+} else{
+    try {
             connect c = new connect();
             String sql1 = "insert into Employee(NAME,AGE,DEPARTMENTID,DESIGNATION,SALARY,EMAIL,PHONENUMBER,DOB,SHIFTID) values('" + e.getName() + "','" + e.getAge() + "','" + e.getDepartmentID() + "','" + e.getDesignation() + "','" + e.getSalary() + "','" + e.getEmail() + "','" + e.getPhonenumber() + "','" + java.time.LocalDate.now() + "','" + e.getShiftid() + "')";
             String sql2 = "insert into Employeelogin(PASSWORD) values('" + e.getPassword() + "')";
@@ -307,6 +309,8 @@ public class AddStaff extends javax.swing.JFrame {
 
         }
 
+}
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void emailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailFocusLost
@@ -385,7 +389,7 @@ public class AddStaff extends javax.swing.JFrame {
 
     private void salaryFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_salaryFocusLost
         // TODO add your handling code here:
-         String Salary = "^\\d{0,15}$";
+         String Salary = "^\\d{5,15}$";
           Pattern p = Pattern.compile(Salary);
         Matcher m = p.matcher(salary.getText());
         if (!m.matches()) {
