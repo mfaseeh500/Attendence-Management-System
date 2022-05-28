@@ -282,7 +282,7 @@ public class AddStaff extends javax.swing.JFrame {
         e.setPhonenumber(phonenumber.getText());
         e.setShiftid(shift.getText());
         e.setPassword(password.getText());
-if(name.getText().isEmpty() && age.getText().isEmpty() && departmentid.getText().isEmpty() && designation.getText().isEmpty() && salary.getText().isEmpty() && email.getText().isEmpty() && phonenumber.getText().isEmpty() && shift.getText().isEmpty() && password.getText().isEmpty()){
+if(name.getText().isEmpty() || age.getText().isEmpty() || departmentid.getText().isEmpty() || designation.getText().isEmpty() || salary.getText().isEmpty() || email.getText().isEmpty() || phonenumber.getText().isEmpty() || shift.getText().isEmpty() || password.getText().isEmpty()){
       JOptionPane.showMessageDialog(null, "THESE FIELDS CANNOT BE LEFT EMPTY");
 } else{
     try {

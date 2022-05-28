@@ -250,7 +250,11 @@ public class UpdateStaff extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-
+if(id.getText().isEmpty() || name.getText().isEmpty() || age.getText().isEmpty() || Phonenumber.getText().isEmpty() ||  designation.getText().isEmpty() || salary.getText().isEmpty() || email.getText().isEmpty() ||  password.getText().isEmpty() || DOJ.getText().isEmpty()){
+      JOptionPane.showMessageDialog(null, "FIELDS CANNOT BE LEFT EMPTY");
+} 
+else
+{
         try {
             connect c = new connect();
             //String employee= "update employee inner join employeelogin on employee.id=employeelogin.id  set employee.name=?, employee.age=?, employee.phonenumber=?, employee.departmentid=?, employee.departmentname=?, employee.designation=?, employee.salary=?,employee.email, employeelogin.password=? where employee.id=?";
@@ -290,6 +294,7 @@ public class UpdateStaff extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
+}
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
