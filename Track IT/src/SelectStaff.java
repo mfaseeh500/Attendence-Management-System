@@ -301,7 +301,9 @@ Date d;
         e.setDesignation(designation.getText());
 
         e.setEmail(email.getText());
-
+if(attendence_group.isSelected(null)){
+         JOptionPane.showMessageDialog(null, "FIELDS CANNOT BE LEFT EMPTY");
+} else {
         try {
             connect c = new connect();
             String sql1 = "insert into Attendance(ID,DEPARTMENTID,Status,Shiftid,Date) values('" + e.getId() + "','" + e.getDepartmentID() + "','" + status + "','" + shift.getText() + "','" + java.time.LocalDate.now() + "')";
@@ -322,6 +324,7 @@ Date d;
             JOptionPane.showMessageDialog(null, ee);
 
         }
+}
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

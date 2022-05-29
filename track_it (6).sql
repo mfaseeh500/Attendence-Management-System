@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 26, 2022 at 04:13 PM
+-- Generation Time: May 29, 2022 at 02:14 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -39,15 +39,15 @@ CREATE TABLE IF NOT EXISTS `attendance` (
   UNIQUE KEY `UC_attendance` (`id`,`Date`),
   KEY `attendance_ibfk_2` (`departmentid`),
   KEY `attendance_ibfk_3` (`shiftid`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `attendance`
 --
 
 INSERT INTO `attendance` (`Attendanceid`, `id`, `departmentid`, `status`, `shiftid`, `Date`) VALUES
-(2, 4, 1, 'Leave', 2, '2022-05-26'),
-(3, 3, 3, 'Absent', 1, '2022-05-26');
+(1, 1, 4, 'Present', 1, '2022-05-29'),
+(4, 2, 2, 'Leave', 1, '2022-05-29');
 
 -- --------------------------------------------------------
 
@@ -83,6 +83,7 @@ CREATE TABLE IF NOT EXISTS `employee` (
   `ID` int(20) NOT NULL AUTO_INCREMENT,
   `NAME` varchar(30) NOT NULL,
   `AGE` int(2) NOT NULL,
+  `GENDER` varchar(20) NOT NULL,
   `DEPARTMENTID` int(4) NOT NULL,
   `DESIGNATION` varchar(25) NOT NULL,
   `SALARY` int(8) NOT NULL,
@@ -93,15 +94,15 @@ CREATE TABLE IF NOT EXISTS `employee` (
   PRIMARY KEY (`ID`),
   KEY `employee_ibfk_1` (`DEPARTMENTID`),
   KEY `employee_ibfk_2` (`Shiftid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`ID`, `NAME`, `AGE`, `DEPARTMENTID`, `DESIGNATION`, `SALARY`, `EMAIL`, `PHONENUMBER`, `DOB`, `Shiftid`) VALUES
-(3, 'ali', 25, 3, 'supervisor', 30000, 'ali@gmail.com', '03202278787', '2022-05-26', 1),
-(4, 'hassan', 23, 1, 'Assistant', 50000, 'hassan@gmail.com', '03317689878', '2022-05-26', 2);
+INSERT INTO `employee` (`ID`, `NAME`, `AGE`, `GENDER`, `DEPARTMENTID`, `DESIGNATION`, `SALARY`, `EMAIL`, `PHONENUMBER`, `DOB`, `Shiftid`) VALUES
+(1, 'Faseeh', 30, 'male', 4, 'Manager', 40000, 'cfaseeh@gmail.com', '03313672289', '2022-05-29', 1),
+(2, 'Amaan', 30, 'male', 2, 'Accountant', 30000, 'amaan@gmail.com', '03313655670', '2022-05-29', 1);
 
 -- --------------------------------------------------------
 
@@ -128,14 +129,6 @@ CREATE TABLE IF NOT EXISTS `employeehistory` (
   KEY `SHIFTID` (`SHIFTID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `employeehistory`
---
-
-INSERT INTO `employeehistory` (`id`, `Name`, `age`, `departmentid`, `designation`, `salary`, `email`, `phonenumber`, `password`, `SHIFTID`, `DOB`, `DOL`) VALUES
-(1, 'atta', 26, 1, 'Typist', 20000, 'atta@gmail.com', '03313674489', '12345', 2, '2022-05-26', '2022-05-26'),
-(2, 'faseeh', 25, 3, 'Manager', 40000, 'faseeh@gmail.com', '03202253676', 'abc123', 2, '2022-05-26', '2022-05-26');
-
 -- --------------------------------------------------------
 
 --
@@ -147,15 +140,15 @@ CREATE TABLE IF NOT EXISTS `employeelogin` (
   `ID` int(20) NOT NULL AUTO_INCREMENT,
   `Password` varchar(15) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employeelogin`
 --
 
 INSERT INTO `employeelogin` (`ID`, `Password`) VALUES
-(3, 'aeiou123'),
-(4, 'xyz123');
+(1, 'aeiou123'),
+(2, '12345');
 
 -- --------------------------------------------------------
 
