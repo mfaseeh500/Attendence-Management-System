@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
  * @author MUHAMMAD FASEEH
  */
 public class ViewStaff extends javax.swing.JFrame {
-
+String gender;
     /**
      * Creates new form ViewStaff
      */
@@ -30,6 +30,7 @@ public class ViewStaff extends javax.swing.JFrame {
                 e.setId(rs.getString("ID"));
                 e.setName(rs.getString("NAME"));
                 e.setAge(rs.getString("AGE"));
+                gender=rs.getString("GENDER");
                 e.setDepartmentID(rs.getString("DEPARTMENTID"));
                 e.setDepartmentname(rs.getString("DEPARTMENTNAME"));
                 e.setDesignation(rs.getString("DESIGNATION"));
@@ -50,7 +51,7 @@ public class ViewStaff extends javax.swing.JFrame {
         while (i < v.Counter()) {
             Employee e = new Employee();
             e = (Employee) v.getAt(i);
-            String employee[] = {e.getId(), e.getName(), e.getAge(),e.getDepartmentID(),e.getDepartmentname(), e.getDesignation(), e.getSalary(),e.getEmail(),e.getPhonenumber(),e.getPassword(),e.getDOJ()};
+            String employee[] = {e.getId(), e.getName(), e.getAge(),gender,e.getDepartmentID(),e.getDepartmentname(), e.getDesignation(), e.getSalary(),e.getEmail(),e.getPhonenumber(),e.getPassword(),e.getDOJ()};
             DefaultTableModel tb1Model = (DefaultTableModel) jTable1.getModel();
             tb1Model.addRow(employee);
             i++;
@@ -92,11 +93,11 @@ public class ViewStaff extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "NAME", "AGE", "DEPARMENT ID", "DEPARTMENT NAME", "DESIGNATION", "SALARY", "EMAIL", "PHONE NUMBER", "PASSWORD", "DATE OF JOINING"
+                "ID", "NAME", "AGE", "GENDER", "DEPARMENT ID", "DEPARTMENT NAME", "DESIGNATION", "SALARY", "EMAIL", "PHONE NUMBER", "PASSWORD", "DATE OF JOINING"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, true, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

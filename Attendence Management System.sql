@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 29, 2022 at 02:14 PM
+-- Generation Time: May 30, 2022 at 04:39 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -47,7 +47,8 @@ CREATE TABLE IF NOT EXISTS `attendance` (
 
 INSERT INTO `attendance` (`Attendanceid`, `id`, `departmentid`, `status`, `shiftid`, `Date`) VALUES
 (1, 1, 4, 'Present', 1, '2022-05-29'),
-(4, 2, 2, 'Leave', 1, '2022-05-29');
+(4, 2, 2, 'Leave', 1, '2022-05-29'),
+(5, 1, 4, 'Present', 1, '2022-05-30');
 
 -- --------------------------------------------------------
 
@@ -94,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `employee` (
   PRIMARY KEY (`ID`),
   KEY `employee_ibfk_1` (`DEPARTMENTID`),
   KEY `employee_ibfk_2` (`Shiftid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employee`
@@ -102,7 +103,8 @@ CREATE TABLE IF NOT EXISTS `employee` (
 
 INSERT INTO `employee` (`ID`, `NAME`, `AGE`, `GENDER`, `DEPARTMENTID`, `DESIGNATION`, `SALARY`, `EMAIL`, `PHONENUMBER`, `DOB`, `Shiftid`) VALUES
 (1, 'Faseeh', 30, 'male', 4, 'Manager', 40000, 'cfaseeh@gmail.com', '03313672289', '2022-05-29', 1),
-(2, 'Amaan', 30, 'male', 2, 'Accountant', 30000, 'amaan@gmail.com', '03313655670', '2022-05-29', 1);
+(2, 'Amaan', 30, 'male', 2, 'Accountant', 30000, 'amaan@gmail.com', '03313655670', '2022-05-29', 1),
+(3, 'Shayan', 40, 'male', 4, 'Manager', 70000, 'shayan@gmail.com', '03313785589', '2022-05-30', 1);
 
 -- --------------------------------------------------------
 
@@ -129,6 +131,13 @@ CREATE TABLE IF NOT EXISTS `employeehistory` (
   KEY `SHIFTID` (`SHIFTID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `employeehistory`
+--
+
+INSERT INTO `employeehistory` (`id`, `Name`, `age`, `departmentid`, `designation`, `salary`, `email`, `phonenumber`, `password`, `SHIFTID`, `DOB`, `DOL`) VALUES
+(4, 'atta', 31, 1, 'clerk', 30000, 'cfaseeh@gmail.com', '03313672289', 'aeiou', 1, '2022-05-30', '2022-05-30');
+
 -- --------------------------------------------------------
 
 --
@@ -140,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `employeelogin` (
   `ID` int(20) NOT NULL AUTO_INCREMENT,
   `Password` varchar(15) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employeelogin`
@@ -148,7 +157,8 @@ CREATE TABLE IF NOT EXISTS `employeelogin` (
 
 INSERT INTO `employeelogin` (`ID`, `Password`) VALUES
 (1, 'aeiou123'),
-(2, '12345');
+(2, '12345'),
+(3, 'abc.123');
 
 -- --------------------------------------------------------
 
@@ -182,6 +192,7 @@ CREATE TABLE IF NOT EXISTS `employee_data` (
 `ID` int(20)
 ,`NAME` varchar(30)
 ,`AGE` int(2)
+,`GENDER` varchar(20)
 ,`DEPARTMENTID` int(4)
 ,`DEPARTMENTNAME` varchar(25)
 ,`DESIGNATION` varchar(25)
@@ -273,7 +284,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `employee_data`;
 
 DROP VIEW IF EXISTS `employee_data`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `employee_data`  AS  select `employee`.`ID` AS `ID`,`employee`.`NAME` AS `NAME`,`employee`.`AGE` AS `AGE`,`employee`.`DEPARTMENTID` AS `DEPARTMENTID`,`department`.`departmentname` AS `DEPARTMENTNAME`,`employee`.`DESIGNATION` AS `DESIGNATION`,`employee`.`SALARY` AS `SALARY`,`employee`.`EMAIL` AS `EMAIL`,`employee`.`PHONENUMBER` AS `PHONENUMBER`,`employee`.`DOB` AS `DOB`,`employeelogin`.`Password` AS `PASSWORD` from ((`employee` join `employeelogin` on((`employee`.`ID` = `employeelogin`.`ID`))) join `department` on((`employee`.`DEPARTMENTID` = `department`.`departmentid`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `employee_data`  AS  select `employee`.`ID` AS `ID`,`employee`.`NAME` AS `NAME`,`employee`.`AGE` AS `AGE`,`employee`.`GENDER` AS `GENDER`,`employee`.`DEPARTMENTID` AS `DEPARTMENTID`,`department`.`departmentname` AS `DEPARTMENTNAME`,`employee`.`DESIGNATION` AS `DESIGNATION`,`employee`.`SALARY` AS `SALARY`,`employee`.`EMAIL` AS `EMAIL`,`employee`.`PHONENUMBER` AS `PHONENUMBER`,`employee`.`DOB` AS `DOB`,`employeelogin`.`Password` AS `PASSWORD` from ((`employee` join `employeelogin` on((`employee`.`ID` = `employeelogin`.`ID`))) join `department` on((`employee`.`DEPARTMENTID` = `department`.`departmentid`))) ;
 
 -- --------------------------------------------------------
 
